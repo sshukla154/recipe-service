@@ -1,0 +1,21 @@
+
+spring:
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:recipe
+    data: classpath:data.sql
+    driverClassName: org.h2.Driver
+    password:
+  mvc:
+    path match:
+      matching-strategy: ant-path-matcher
+  jackson:
+    serialization:
+      fail-on-empty-beans: 'false'
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+server:
+  port: '8080'
