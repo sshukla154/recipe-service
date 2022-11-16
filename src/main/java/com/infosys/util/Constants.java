@@ -11,6 +11,6 @@ public class Constants {
     // Exception Message
     public static final String RECIPE_MESSAGE_NOT_FOUND = "Recipe Not found with id = ";
     public static final String INGREDIENT_MESSAGE_NOT_FOUND = "Ingredient Not found with id = ";
-//    public static final String MESSAGE_NOT_FOUND = "Recipe Not found with id = ";
+    public static final String CRITERIA_MESSAGE_NOT_FOUND = "Ingredient Not found with id = ";
 
 }

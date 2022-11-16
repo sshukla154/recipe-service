@@ -2,7 +2,9 @@ package com.infosys.controller;
 
 import com.infosys.model.Recipe;
 import com.infosys.request.CreateRecipeRequest;
+import com.infosys.request.RecipeSearchRequest;
 import com.infosys.request.UpdateRecipeRequest;
+import com.infosys.response.RecipeResponse;
 import com.infosys.service.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -93,6 +96,20 @@ public class RecipeController {
         log.info("RecipeController.getAllRecipes : Id : {}", id);
         recipeService.deleteRecipe(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Operation(description = "Search recipes by given parameters")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful request"),
+            @ApiResponse(responseCode = "404", description = "Different error messages related to criteria and recipe")
+
+    })
+    @PostMapping("/search")
+    public List<RecipeResponse> searchRecipe(@RequestParam(name = "page", defaultValue = "0") int page,
+                                             @RequestParam(name = "size", defaultValue = "10") int size,
+                                             @RequestBody @Valid RecipeSearchRequest recipeSearchRequest) {
+        log.info("Searching the recipe by given criteria");
+        return recipeService.findBySearchCriteria(recipeSearchRequest, page, size);
     }
 
 }

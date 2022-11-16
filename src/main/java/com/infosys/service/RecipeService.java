@@ -2,7 +2,9 @@ package com.infosys.service;
 
 import com.infosys.model.Recipe;
 import com.infosys.request.CreateRecipeRequest;
+import com.infosys.request.RecipeSearchRequest;
 import com.infosys.request.UpdateRecipeRequest;
+import com.infosys.response.RecipeResponse;
 
 import java.util.List;
 
@@ -21,5 +23,6 @@ public interface RecipeService {
 
     void deleteRecipe(int id);
 
-//    Set<RecipeResponse> findBySearchCriteria(RecipeSearchRequest recipeSearchRequest);
+    List<RecipeResponse> findBySearchCriteria(RecipeSearchRequest recipeSearchRequest, int page, int size);
+
 }
